@@ -7,15 +7,22 @@
 
 
 def find_missing(lst, count):
-    return [x for x in range(1, count + 1)
-            if x not in lst]
+    missing_nums = []
+    for i in range(1, count+1):
+        if i not in lst:
+            missing_nums.append(i)
+    return missing_nums
 
 
 num_of_students = int(input())
-student_ids = list(map(int, input().split(" ")))
-student_ids.sort()
+student_ids = list(input().split(" "))
 
-missing_ids = find_missing(set(student_ids), num_of_students)
+student_ids_int = []
+for ids in student_ids:
+    if ids.isnumeric():
+        student_ids_int.append(int(ids))
+
+missing_ids = find_missing(student_ids_int, num_of_students)
 
 for ids in missing_ids:
     print(ids, end=" ")
